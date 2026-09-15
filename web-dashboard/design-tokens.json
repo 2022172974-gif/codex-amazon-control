@@ -1,0 +1,31 @@
+{
+  "name": "Amazon Control Reevo-inspired",
+  "colors": {
+    "ink": "#121212",
+    "foreground": "#3c3c3c",
+    "muted": "#92918f",
+    "canvas": "#ffffff",
+    "wash": "#f7f7f0",
+    "line": "#e7e7de",
+    "orange": "#f96a1a",
+    "green": "#49b585",
+    "blue": "#358bf0",
+    "teal": "#4ab7ca",
+    "yellow": "#f8c647",
+    "pink": "#e36fb6"
+  },
+  "radius": {
+    "control": 2,
+    "panel": 2,
+    "modal": 8
+  },
+  "typography": {
+    "ui": ["Segoe UI Variable", "Inter", "Microsoft YaHei", "PingFang SC", "sans-serif"],
+    "mono": ["Cascadia Mono", "JetBrains Mono", "Consolas", "monospace"],
+    "letterSpacing": 0
+  },
+  "background": {
+    "mode": "porcelain-editorial",
+    "gridSize": 0
+  }
+}

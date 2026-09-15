@@ -1,0 +1,32 @@
+# Dependencies and build outputs
+node_modules/
+release/
+.electron-builder-cache/
+dist/
+build/
+coverage/
+.playwright-cli/
+.edict/
+.superpowers/
+
+# Generated and local runtime data
+data/
+output/
+plugin-service/inbox/
+*.log
+*.tmp
+*.bak
+*.bak-*
+_tmp_*
+_tmp_*.docx
+
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

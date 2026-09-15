@@ -1,0 +1,56 @@
+{
+  "name": "amazon-control-desktop",
+  "version": "4.0.0",
+  "description": "Amazon Control v4 multi-agent operations, media studio and provider routing workbench",
+  "author": "YANGJUN",
+  "main": "electron/main.js",
+  "private": true,
+  "scripts": {
+    "dev": "electron .",
+    "service": "node plugin-service/server.js",
+    "test": "node --test \"test/*.test.js\"",
+    "package:win": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^37.2.6",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.codex.amazon-control",
+    "productName": "Amazon Control",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "web-dashboard/**/*",
+      "!web-dashboard/**/*.bak*",
+      "plugin-service/**/*",
+      "!plugin-service/**/*.bak*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/@ffmpeg-installer/**/*",
+      "node_modules/sharp/**/*",
+      "node_modules/@img/**/*"
+    ],
+    "npmRebuild": true,
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "Amazon-Control-${version}-Setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "electronDist": "node_modules/electron/dist",
+    "electronVersion": "37.10.3"
+  },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "sharp": "^0.35.4"
+  }
+}

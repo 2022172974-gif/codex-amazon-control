@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "product_name": "Amazon Control",
+  "planning_source": "condensed_context_files",
+  "ai_mode": "real_ai_first_with_local_fallback",
+  "agent_mode": "multi_model_multi_agent",
+  "skill_mode": "extensible_tool_registry",
+  "connector_policy": "auto_read_approval_write",
+  "asset_storage": "copy_to_configurable_local_workspace",
+  "default_user_data_dir": "D:\\AmazonControlData\\app-store",
+  "team_mode": "local_first_project_package_export_import",
+  "listing_execution": "table_export_sp_api_approval_browser_approval",
+  "primary_interaction": "chat_command_center",
+  "module_role": "advanced_editor_preview_history_export",
+  "data_sources": [
+    "api_ipa",
+    "csv",
+    "json",
+    "dragged_assets",
+    "manual_input",
+    "local_files",
+    "links",
+    "historical_tasks"
+  ],
+  "safety_requires_approval": [
+    "amazon_backend_write",
+    "ads_budget_change",
+    "ads_bid_change",
+    "listing_change",
+    "feed_submission",
+    "browser_assisted_backend_operation",
+    "data_deletion",
+    "connector_configuration_change"
+  ],
+  "team_export_sensitive_defaults": {
+    "export_api_keys": false,
+    "export_tokens": false,
+    "export_credentials": false,
+    "export_assets_default": "ask_or_optional"
+  }
+}

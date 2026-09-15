@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' file: data: blob: http://127.0.0.1:8787; media-src 'self' file: blob: http://127.0.0.1:8787; connect-src 'self' http://127.0.0.1:8787 http://127.0.0.1:8790; object-src 'none'; base-uri 'none'; form-action 'none'" />
+    <link rel="icon" type="image/png" href="./assets/favicon-yj.png" />
+    <title>Amazon Control v4</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="reevo-mode">
+    <div id="bootScreen" class="boot-screen" role="status" aria-label="Amazon Control 正在启动">
+      <div class="boot-grid" aria-hidden="true"></div>
+      <div class="boot-scan" aria-hidden="true"></div>
+      <div class="boot-core">
+        <div class="boot-logo-wrap"><img class="boot-logo" src="./assets/brand-lockup-yj.png" alt="YJ Amazon Control" /></div>
+        <div class="boot-title">AI OPERATIONS COMMAND DECK</div>
+        <div class="boot-subtitle">AI OPERATIONS COMMAND DECK</div>
+        <div class="boot-nodes" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div id="bootLog" class="boot-log">CORE / INITIALIZING</div>
+        <div class="boot-progress" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <button id="bootSkipButton" class="boot-skip" type="button">跳过启动</button>
+    </div>
+    <canvas id="deckCanvas" class="deck-canvas" aria-hidden="true"></canvas>
+    <div class="deck-vignette" aria-hidden="true"></div>
+    <section class="browser-shell" aria-label="工作台浏览器">
+      <div id="browserTabStrip" class="browser-tabs"></div>
+      <div class="browser-toolbar">
+        <div class="top-rail-left"><strong>Amazon Control</strong><span class="top-mode-chip">AETHER DECK</span><span id="deckTelemetry" class="deck-telemetry">FIELD 000</span></div>
+        <div class="browser-nav">
+          <button id="browserBackButton" type="button" title="后退" aria-label="后退">‹</button>
+          <button id="browserForwardButton" type="button" title="前进" aria-label="前进">›</button>
+          <button id="browserReloadButton" type="button" title="刷新" aria-label="刷新">⟳</button>
+          <button id="browserNewTabButton" type="button" title="新标签页" aria-label="新标签页">＋</button>
+        </div>
+        <form id="browserOmniboxForm" class="browser-omnibox" autocomplete="off">
+          <span class="omnibox-scheme">amazon://</span>
+          <input id="browserOmnibox" type="text" aria-label="地址和命令" placeholder="模块、ASIN、文件路径、链接或自然语言" />
+          <div id="browserSuggestions" class="browser-suggestions hidden"></div>
+        </form>
+        <span id="topProjectContext" class="browser-context">项目 / 站点 / 币种</span>
+        <span id="topRuntimeStatus" class="browser-runtime">本地服务检测中</span>
+        <button id="deckModeToggle" class="deck-mode-toggle" type="button" aria-pressed="true">DECK MODE</button>
+        <div id="browserStatus" class="browser-status">READY</div>
+      </div>
+    </section>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark"><img src="./assets/brand-symbol.png" alt="Amazon Control" /></div>
+          <div>
+            <strong>Amazon Control</strong>
+            <span>AI OPERATIONS COMMAND DECK</span>
+          </div>
+        </div>
+        <div id="runtimeBanner" class="runtime-banner">正在连接本地服务...</div>
+        <div class="side-label">主要入口</div>
+        <nav id="moduleNav" class="module-nav" aria-label="模块页面"></nav>
+        <div class="side-tools">
+          <button id="openAssistantButton" data-code="AI" type="button">智能总控聊天</button>
+          <button id="openCodexButton" data-code="CX" type="button">Codex 修改助手</button>
+          <button id="openExportButton" data-code="EX" type="button">复盘导出</button>
+        </div>
+        <div class="sidebar-footer">
+          <span class="status-dot"></span>
+          <span id="serviceStatus">本地服务检测中</span>
+          <small id="servicePath">D:\AmazonControlData\app-store</small>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="hero compact-hero">
+          <div>
+            <div class="eyebrow">AMAZON INTELLIGENCE NETWORK</div>
+            <h1>AI Operations Command Deck</h1>
+            <p>主入口是聊天：你可以粘贴 ASIN、广告 CSV、业务 JSON、D 盘文件路径、网页链接或素材说明。系统会按当前站点自动路由到选品、广告、数据、库存、合规、图片、视频、上架等模块，并把原始数据和分析结果分开保存。</p>
+          </div>
+          <div class="hero-actions">
+            <button id="refreshStateButton" class="ghost-button" type="button">刷新状态</button>
+            <button id="newTaskButton" class="primary-button" type="button">清空当前结果</button>
+          </div>
+        </header>
+
+        <section class="context-bar panel" aria-label="项目上下文">
+          <label>项目<input id="projectNameInput" type="text" placeholder="例如：德国站宠物用品项目" autocomplete="off" /></label>
+          <label>站点<select id="marketplaceSelect"></select></label>
+          <label>数据源<select id="dataSourceSelect"><option value="manual">手动</option><option value="csv">CSV</option><option value="api">API/IPA</option><option value="mixed">混合</option></select></label>
+          <label>接口<select id="connectorSelect"></select></label>
+          <div class="context-card"><b id="marketContext">未选择站点</b><span id="marketMeta">币种 / 语言 / 区域</span></div>
+          <div class="context-card"><b id="apiContext">接口未配置</b><span id="syncContext">同步：等待配置</span></div>
+        </section>
+
+        <section id="moduleWorkspace" class="module-workspace"></section>
+      </main>
+    </div>
+    <footer id="deckTicker" class="deck-ticker" aria-live="polite">
+      <span class="deck-ticker-label">EVENT STREAM</span>
+      <span id="deckTickerText">COMMAND DECK STANDBY</span>
+    </footer>
+    <div id="kineticCursor" class="kinetic-cursor" aria-hidden="true"><span id="kineticCoords">000 / 000</span></div>
+    <div id="kineticOrb" class="kinetic-orb" aria-hidden="true"><span>AI</span><i></i></div>
+
+    <script src="./vendor/anime.umd.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
